@@ -14,16 +14,16 @@ timeset<-data.frame(year=c(2003,2004,2006,2006.5,2008,2009,2009.5,2010,2011,2013
   "2438 N. Humboldt Blvd.",
   "Quinton's birth",
   "begining of \nCommunity Night",
-  "10 year celebration!"),                  
-                    y=c(runif(5,.5,1.5),runif(5,-1.5,-.5)))
+  "10 year celebration!"))
 
 ## alternatively, you can import a text file with "year" and "text" columns and modify from there
-path <- "./timeset.csv"
-timeset2 <- read.csv(path)
+#path <- "./timeset.csv"
+#timeset <- read.csv(path)
 
-n <- dim(timeset)[1] 
-timeset$y[seq(1, n, 2)] <- runif(5,.5,1.5)
-timeset$y[seq(2, n, 2)] <- runif(5,-1.5,-.5)
+#add random y values
+records <- dim(timeset)[1] # number of records for timeset
+timeset$y[seq(2, records, 2)] <- runif(trunc(records/2),.5,1.5) # alternate y above 
+timeset$y[seq(1, records, 2)] <- runif(records-trunc(records/2),-1.5,-.5) # and below zero
 
 timeset$ytext<-timeset$y
 timeset[timeset$y<0,]$ytext<-timeset[timeset$y<0,]$y-.7
