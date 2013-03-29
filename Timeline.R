@@ -1,6 +1,7 @@
 # based on timeline from http://fishyoperations.com/r/timeline-graph-with-ggplot2/, via R-bloggers
 # might need to fix right margin
 
+setwd("~/Dropbox/R/R-timeline")
 library(ggplot2)
 
 timeset<-data.frame(year=c(2003,2004,2006,2006.5,2008,2009,2009.5,2010,2011,2013),text=c(
@@ -12,9 +13,13 @@ timeset<-data.frame(year=c(2003,2004,2006,2006.5,2008,2009,2009.5,2010,2011,2013
   "joined Lake Park",
   "2438 N. Humboldt Blvd.",
   "Quinton's birth",
-  "begining of \nCommuntiy Night",
+  "begining of \nCommunity Night",
   "10 year celebration!"),                  
                     y=c(runif(5,.5,1.5),runif(5,-1.5,-.5)))
+
+## alternatively, you can import a text file with "year" and "text" columns and modify from there
+path <- "./timeset.csv"
+timeset2 <- read.csv(path)
 
 n <- dim(timeset)[1] 
 timeset$y[seq(1, n, 2)] <- runif(5,.5,1.5)
